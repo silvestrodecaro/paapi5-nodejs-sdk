@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-/**
+ /**
  * ProductAdvertisingAPI
  * https://webservices.amazon.com/paapi5/documentation/index.html
  *
@@ -56,6 +56,8 @@
 
 
 
+
+
   };
 
   /**
@@ -72,6 +74,12 @@
       if (data.hasOwnProperty('DefaultShippingCountry')) {
         obj['DefaultShippingCountry'] = ApiClient.convertToType(data['DefaultShippingCountry'], 'String');
       }
+      if (data.hasOwnProperty('FeedbackCount')) {
+        obj['FeedbackCount'] = ApiClient.convertToType(data['FeedbackCount'], 'Number');
+      }
+      if (data.hasOwnProperty('FeedbackRating')) {
+        obj['FeedbackRating'] = ApiClient.convertToType(data['FeedbackRating'], 'Number');
+      }
       if (data.hasOwnProperty('Id')) {
         obj['Id'] = ApiClient.convertToType(data['Id'], 'String');
       }
@@ -86,6 +94,14 @@
    * @member {String} DefaultShippingCountry
    */
   exports.prototype['DefaultShippingCountry'] = undefined;
+  /**
+   * @member {Number} FeedbackCount
+   */
+  exports.prototype['FeedbackCount'] = undefined;
+  /**
+   * @member {Number} FeedbackRating
+   */
+  exports.prototype['FeedbackRating'] = undefined;
   /**
    * @member {String} Id
    */

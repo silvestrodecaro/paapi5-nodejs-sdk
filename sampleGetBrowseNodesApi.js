@@ -68,27 +68,22 @@ getBrowseNodesRequest['Resources'] = ['BrowseNodes.Ancestor', 'BrowseNodes.Child
 function parseResponse(browseNodesResponseList) {
   var mappedResponse = {};
   for (var i in browseNodesResponseList) {
-    mappedResponse[browseNodesResponseList[i]['Id']] = browseNodesResponseList[i];
+    if (browseNodesResponseList.hasOwnProperty(i)) {
+      mappedResponse[browseNodesResponseList[i]['Id']] = browseNodesResponseList[i];
+    }
   }
   return mappedResponse;
 }
 
-var callback = function (error, data, response) {
-  if (error) {
-    console.log('Error calling PA-API 5.0!');
-    console.log('Printing Full Error Object:\n' + JSON.stringify(error, null, 1));
-    console.log('Status Code: ' + error['status']);
-    if (error['response'] !== undefined && error['response']['text'] !== undefined) {
-      console.log('Error Object: ' + JSON.stringify(error['response']['text'], null, 1));
-    }
-  } else {
-    console.log('API called successfully.');
-    var getBrowseNodesResponse = ProductAdvertisingAPIv1.GetBrowseNodesResponse.constructFromObject(data);
-    console.log('Complete Response: \n' + JSON.stringify(getBrowseNodesResponse, null, 1));
-    if (getBrowseNodesResponse['BrowseNodesResult'] !== undefined) {
-      console.log('Printing all browse node information in BrowseNodesResult:');
-      var response_list = parseResponse(getBrowseNodesResponse['BrowseNodesResult']['BrowseNodes']);
-      for (var i in getBrowseNodesRequest['BrowseNodeIds']) {
+function onSuccess(data) {
+  console.log('API called successfully.');
+  var getBrowseNodesResponse = ProductAdvertisingAPIv1.GetBrowseNodesResponse.constructFromObject(data);
+  console.log('Complete Response: \n' + JSON.stringify(getBrowseNodesResponse, null, 1));
+  if (getBrowseNodesResponse['BrowseNodesResult'] !== undefined) {
+    console.log('Printing all browse node information in BrowseNodesResult:');
+    var response_list = parseResponse(getBrowseNodesResponse['BrowseNodesResult']['BrowseNodes']);
+    for (var i in getBrowseNodesRequest['BrowseNodeIds']) {
+      if (getBrowseNodesRequest['BrowseNodeIds'].hasOwnProperty(i)) {
         var browseNodeId = getBrowseNodesRequest['BrowseNodeIds'][i];
         console.log('\nPrinting information about the browse node with Id: ' + browseNodeId);
         if (browseNodeId in response_list) {
@@ -109,19 +104,31 @@ var callback = function (error, data, response) {
         }
       }
     }
-    if (getBrowseNodesResponse['Errors'] !== undefined) {
-      console.log('\nErrors:');
-      console.log('Complete Error Response: ' + JSON.stringify(getBrowseNodesResponse['Errors'], null, 1));
-      console.log('Printing 1st Error:');
-      var error_0 = getBrowseNodesResponse['Errors'][0];
-      console.log('Error Code: ' + error_0['Code']);
-      console.log('Error Message: ' + error_0['Message']);
-    }
   }
-};
-
-try {
-  api.getBrowseNodes(getBrowseNodesRequest, callback);
-} catch (ex) {
-  console.log("Exception: " + ex);
+  if (getBrowseNodesResponse['Errors'] !== undefined) {
+    console.log('\nErrors:');
+    console.log('Complete Error Response: ' + JSON.stringify(getBrowseNodesResponse['Errors'], null, 1));
+    console.log('Printing 1st Error:');
+    var error_0 = getBrowseNodesResponse['Errors'][0];
+    console.log('Error Code: ' + error_0['Code']);
+    console.log('Error Message: ' + error_0['Message']);
+  }
 }
+
+function onError(error) {
+  console.log('Error calling PA-API 5.0!');
+  console.log('Printing Full Error Object:\n' + JSON.stringify(error, null, 1));
+  console.log('Status Code: ' + error['status']);
+  if (error['response'] !== undefined && error['response']['text'] !== undefined) {
+    console.log('Error Object: ' + JSON.stringify(error['response']['text'], null, 1));
+  }
+}
+
+api.getBrowseNodes(getBrowseNodesRequest).then(
+  function(data) {
+    onSuccess(data);
+  },
+  function(error) {
+    onError(error);
+  }
+);

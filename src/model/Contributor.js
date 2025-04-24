@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-/**
+ /**
  * ProductAdvertisingAPI
  * https://webservices.amazon.com/paapi5/documentation/index.html
  *
@@ -56,6 +56,7 @@
 
 
 
+
   };
 
   /**
@@ -78,6 +79,9 @@
       if (data.hasOwnProperty('Role')) {
         obj['Role'] = ApiClient.convertToType(data['Role'], 'String');
       }
+      if (data.hasOwnProperty('RoleType')) {
+        obj['RoleType'] = ApiClient.convertToType(data['RoleType'], 'String');
+      }
     }
     return obj;
   }
@@ -94,6 +98,10 @@
    * @member {String} Role
    */
   exports.prototype['Role'] = undefined;
+  /**
+   * @member {String} RoleType
+   */
+  exports.prototype['RoleType'] = undefined;
 
 
 

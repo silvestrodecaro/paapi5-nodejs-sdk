@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-/**
+ /**
  * ProductAdvertisingAPI
  * https://webservices.amazon.com/paapi5/documentation/index.html
  *
@@ -22,18 +22,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/MultiValuedAttribute'], factory);
+    define(['ApiClient', 'model/MultiValuedAttribute', 'model/SingleStringValuedAttribute'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./MultiValuedAttribute'));
+    module.exports = factory(require('../ApiClient'), require('./MultiValuedAttribute'), require('./SingleStringValuedAttribute'));
   } else {
     // Browser globals (root is window)
     if (!root.ProductAdvertisingAPIv1) {
       root.ProductAdvertisingAPIv1 = {};
     }
-    root.ProductAdvertisingAPIv1.TechnicalInfo = factory(root.ProductAdvertisingAPIv1.ApiClient, root.ProductAdvertisingAPIv1.MultiValuedAttribute);
+    root.ProductAdvertisingAPIv1.TechnicalInfo = factory(root.ProductAdvertisingAPIv1.ApiClient, root.ProductAdvertisingAPIv1.MultiValuedAttribute, root.ProductAdvertisingAPIv1.SingleStringValuedAttribute);
   }
-}(this, function(ApiClient, MultiValuedAttribute) {
+}(this, function(ApiClient, MultiValuedAttribute, SingleStringValuedAttribute) {
   'use strict';
 
 
@@ -54,6 +54,7 @@
     var _this = this;
 
 
+
   };
 
   /**
@@ -67,6 +68,9 @@
     if (data) {
       obj = obj || new exports();
 
+      if (data.hasOwnProperty('EnergyEfficiencyClass')) {
+        obj['EnergyEfficiencyClass'] = SingleStringValuedAttribute.constructFromObject(data['EnergyEfficiencyClass']);
+      }
       if (data.hasOwnProperty('Formats')) {
         obj['Formats'] = MultiValuedAttribute.constructFromObject(data['Formats']);
       }
@@ -74,6 +78,10 @@
     return obj;
   }
 
+  /**
+   * @member {module:model/SingleStringValuedAttribute} EnergyEfficiencyClass
+   */
+  exports.prototype['EnergyEfficiencyClass'] = undefined;
   /**
    * @member {module:model/MultiValuedAttribute} Formats
    */

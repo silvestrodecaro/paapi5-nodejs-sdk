@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -13,7 +13,14 @@
  * permissions and limitations under the License.
  */
 
-/**
+ /**
+ * Copyright 2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ */
+
+
+ /**
  * ProductAdvertisingAPI
  * https://webservices.amazon.com/paapi5/documentation/index.html
  *
@@ -53,20 +60,12 @@
     this.apiClient = apiClient || ApiClient.instance;
 
 
-    /**
-     * Callback function to receive the result of the getBrowseNodes operation.
-     * @callback module:api/DefaultApi~getBrowseNodesCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetBrowseNodesResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
 
     /**
      * @param {module:model/GetBrowseNodesRequest} getBrowseNodesRequest GetBrowseNodesRequest
-     * @param {module:api/DefaultApi~getBrowseNodesCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetBrowseNodesResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetBrowseNodesResponse} and HTTP response
      */
-    this.getBrowseNodes = function(getBrowseNodesRequest, callback) {
+    this.getBrowseNodesWithHttpInfo = function(getBrowseNodesRequest) {
       var postBody = getBrowseNodesRequest;
 
       // verify the required parameter 'getBrowseNodesRequest' is set
@@ -94,24 +93,27 @@
       return this.apiClient.callApi(
         '/paapi5/getbrowsenodes', 'POST', 'GetBrowseNodes',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getItems operation.
-     * @callback module:api/DefaultApi~getItemsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetItemsResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * @param {module:model/GetBrowseNodesRequest} getBrowseNodesRequest GetBrowseNodesRequest
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetBrowseNodesResponse}
      */
+    this.getBrowseNodes = function(getBrowseNodesRequest) {
+      return this.getBrowseNodesWithHttpInfo(getBrowseNodesRequest)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * @param {module:model/GetItemsRequest} getItemsRequest GetItemsRequest
-     * @param {module:api/DefaultApi~getItemsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetItemsResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetItemsResponse} and HTTP response
      */
-    this.getItems = function(getItemsRequest, callback) {
+    this.getItemsWithHttpInfo = function(getItemsRequest) {
       var postBody = getItemsRequest;
 
       // verify the required parameter 'getItemsRequest' is set
@@ -139,24 +141,27 @@
       return this.apiClient.callApi(
         '/paapi5/getitems', 'POST', 'GetItems',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the getVariations operation.
-     * @callback module:api/DefaultApi~getVariationsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/GetVariationsResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * @param {module:model/GetItemsRequest} getItemsRequest GetItemsRequest
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetItemsResponse}
      */
+    this.getItems = function(getItemsRequest) {
+      return this.getItemsWithHttpInfo(getItemsRequest)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * @param {module:model/GetVariationsRequest} getVariationsRequest GetVariationsRequest
-     * @param {module:api/DefaultApi~getVariationsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/GetVariationsResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/GetVariationsResponse} and HTTP response
      */
-    this.getVariations = function(getVariationsRequest, callback) {
+    this.getVariationsWithHttpInfo = function(getVariationsRequest) {
       var postBody = getVariationsRequest;
 
       // verify the required parameter 'getVariationsRequest' is set
@@ -184,24 +189,27 @@
       return this.apiClient.callApi(
         '/paapi5/getvariations', 'POST', 'GetVariations',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
     }
 
     /**
-     * Callback function to receive the result of the searchItems operation.
-     * @callback module:api/DefaultApi~searchItemsCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/SearchItemsResponse} data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
+     * @param {module:model/GetVariationsRequest} getVariationsRequest GetVariationsRequest
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/GetVariationsResponse}
      */
+    this.getVariations = function(getVariationsRequest) {
+      return this.getVariationsWithHttpInfo(getVariationsRequest)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
 
     /**
      * @param {module:model/SearchItemsRequest} searchItemsRequest SearchItemsRequest
-     * @param {module:api/DefaultApi~searchItemsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link module:model/SearchItemsResponse}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SearchItemsResponse} and HTTP response
      */
-    this.searchItems = function(searchItemsRequest, callback) {
+    this.searchItemsWithHttpInfo = function(searchItemsRequest) {
       var postBody = searchItemsRequest;
 
       // verify the required parameter 'searchItemsRequest' is set
@@ -229,8 +237,19 @@
       return this.apiClient.callApi(
         '/paapi5/searchitems', 'POST', 'SearchItems',
         pathParams, queryParams, collectionQueryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
+        authNames, contentTypes, accepts, returnType
       );
+    }
+
+    /**
+     * @param {module:model/SearchItemsRequest} searchItemsRequest SearchItemsRequest
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SearchItemsResponse}
+     */
+    this.searchItems = function(searchItemsRequest) {
+      return this.searchItemsWithHttpInfo(searchItemsRequest)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
     }
   };
 

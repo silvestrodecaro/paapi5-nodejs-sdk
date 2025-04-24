@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-/**
+ /**
  * ProductAdvertisingAPI
  * https://webservices.amazon.com/paapi5/documentation/index.html
  *
@@ -22,18 +22,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/BrowseNodeAncestor', 'model/BrowseNodeChildren'], factory);
+    define(['ApiClient', 'model/BrowseNodeAncestor', 'model/BrowseNodeChild'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./BrowseNodeAncestor'), require('./BrowseNodeChildren'));
+    module.exports = factory(require('../ApiClient'), require('./BrowseNodeAncestor'), require('./BrowseNodeChild'));
   } else {
     // Browser globals (root is window)
     if (!root.ProductAdvertisingAPIv1) {
       root.ProductAdvertisingAPIv1 = {};
     }
-    root.ProductAdvertisingAPIv1.BrowseNode = factory(root.ProductAdvertisingAPIv1.ApiClient, root.ProductAdvertisingAPIv1.BrowseNodeAncestor, root.ProductAdvertisingAPIv1.BrowseNodeChildren);
+    root.ProductAdvertisingAPIv1.BrowseNode = factory(root.ProductAdvertisingAPIv1.ApiClient, root.ProductAdvertisingAPIv1.BrowseNodeAncestor, root.ProductAdvertisingAPIv1.BrowseNodeChild);
   }
-}(this, function(ApiClient, BrowseNodeAncestor, BrowseNodeChildren) {
+}(this, function(ApiClient, BrowseNodeAncestor, BrowseNodeChild) {
   'use strict';
 
 
@@ -77,7 +77,7 @@
         obj['Ancestor'] = BrowseNodeAncestor.constructFromObject(data['Ancestor']);
       }
       if (data.hasOwnProperty('Children')) {
-        obj['Children'] = BrowseNodeChildren.constructFromObject(data['Children']);
+        obj['Children'] = ApiClient.convertToType(data['Children'], [BrowseNodeChild]);
       }
       if (data.hasOwnProperty('ContextFreeName')) {
         obj['ContextFreeName'] = ApiClient.convertToType(data['ContextFreeName'], 'String');
@@ -103,7 +103,7 @@
    */
   exports.prototype['Ancestor'] = undefined;
   /**
-   * @member {module:model/BrowseNodeChildren} Children
+   * @member {Array.<module:model/BrowseNodeChild>} Children
    */
   exports.prototype['Children'] = undefined;
   /**

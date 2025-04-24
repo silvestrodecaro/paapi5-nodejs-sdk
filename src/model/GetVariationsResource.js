@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-/**
+ /**
  * ProductAdvertisingAPI
  * https://webservices.amazon.com/paapi5/documentation/index.html
  *
@@ -63,6 +63,16 @@
      * @const
      */
     "BrowseNodeInfo.WebsiteSalesRank": "BrowseNodeInfo.WebsiteSalesRank",
+    /**
+     * value: "CustomerReviews.Count"
+     * @const
+     */
+    "CustomerReviews.Count": "CustomerReviews.Count",
+    /**
+     * value: "CustomerReviews.StarRating"
+     * @const
+     */
+    "CustomerReviews.StarRating": "CustomerReviews.StarRating",
     /**
      * value: "Images.Primary.Small"
      * @const
@@ -173,6 +183,11 @@
      * @const
      */
     "Offers.Listings.Condition": "Offers.Listings.Condition",
+    /**
+     * value: "Offers.Listings.Condition.ConditionNote"
+     * @const
+     */
+    "Offers.Listings.Condition.ConditionNote": "Offers.Listings.Condition.ConditionNote",
     /**
      * value: "Offers.Listings.Condition.SubCondition"
      * @const
@@ -288,6 +303,11 @@
      * @const
      */
     "RentalOffers.Listings.Condition": "RentalOffers.Listings.Condition",
+    /**
+     * value: "RentalOffers.Listings.Condition.ConditionNote"
+     * @const
+     */
+    "RentalOffers.Listings.Condition.ConditionNote": "RentalOffers.Listings.Condition.ConditionNote",
     /**
      * value: "RentalOffers.Listings.Condition.SubCondition"
      * @const

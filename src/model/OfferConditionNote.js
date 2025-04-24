@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-/**
+ /**
  * ProductAdvertisingAPI
  * https://webservices.amazon.com/paapi5/documentation/index.html
  *
@@ -22,59 +22,70 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/BrowseNodeChild'], factory);
+    define(['ApiClient'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./BrowseNodeChild'));
+    module.exports = factory(require('../ApiClient'));
   } else {
     // Browser globals (root is window)
     if (!root.ProductAdvertisingAPIv1) {
       root.ProductAdvertisingAPIv1 = {};
     }
-    root.ProductAdvertisingAPIv1.BrowseNodeChildren = factory(root.ProductAdvertisingAPIv1.ApiClient, root.ProductAdvertisingAPIv1.BrowseNodeChild);
+    root.ProductAdvertisingAPIv1.OfferConditionNote = factory(root.ProductAdvertisingAPIv1.ApiClient);
   }
-}(this, function(ApiClient, BrowseNodeChild) {
+}(this, function(ApiClient) {
   'use strict';
 
 
 
 
   /**
-   * The BrowseNodeChildren model module.
-   * @module model/BrowseNodeChildren
+   * The OfferConditionNote model module.
+   * @module model/OfferConditionNote
    * @version 1.0.0
    */
 
   /**
-   * Constructs a new <code>BrowseNodeChildren</code>.
-   * @alias module:model/BrowseNodeChildren
+   * Constructs a new <code>OfferConditionNote</code>.
+   * @alias module:model/OfferConditionNote
    * @class
-   * @extends Array
    */
   var exports = function() {
     var _this = this;
-    _this = new Array();
-    Object.setPrototypeOf(_this, exports);
 
-    return _this;
+
+
   };
 
   /**
-   * Constructs a <code>BrowseNodeChildren</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>OfferConditionNote</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/BrowseNodeChildren} obj Optional instance to populate.
-   * @return {module:model/BrowseNodeChildren} The populated <code>BrowseNodeChildren</code> instance.
+   * @param {module:model/OfferConditionNote} obj Optional instance to populate.
+   * @return {module:model/OfferConditionNote} The populated <code>OfferConditionNote</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
-      ApiClient.constructFromObject(data, obj, 'BrowseNodeChild');
 
+      if (data.hasOwnProperty('Locale')) {
+        obj['Locale'] = ApiClient.convertToType(data['Locale'], 'String');
+      }
+      if (data.hasOwnProperty('Value')) {
+        obj['Value'] = ApiClient.convertToType(data['Value'], 'String');
+      }
     }
     return obj;
   }
 
+  /**
+   * @member {String} Locale
+   */
+  exports.prototype['Locale'] = undefined;
+  /**
+   * @member {String} Value
+   */
+  exports.prototype['Value'] = undefined;
 
 
 

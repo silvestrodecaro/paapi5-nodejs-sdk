@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-/**
+ /**
  * ProductAdvertisingAPI
  * https://webservices.amazon.com/paapi5/documentation/index.html
  *
@@ -63,6 +63,16 @@
      * @const
      */
     "BrowseNodeInfo.WebsiteSalesRank": "BrowseNodeInfo.WebsiteSalesRank",
+    /**
+     * value: "CustomerReviews.Count"
+     * @const
+     */
+    "CustomerReviews.Count": "CustomerReviews.Count",
+    /**
+     * value: "CustomerReviews.StarRating"
+     * @const
+     */
+    "CustomerReviews.StarRating": "CustomerReviews.StarRating",
     /**
      * value: "Images.Primary.Small"
      * @const
@@ -173,6 +183,11 @@
      * @const
      */
     "Offers.Listings.Condition": "Offers.Listings.Condition",
+    /**
+     * value: "Offers.Listings.Condition.ConditionNote"
+     * @const
+     */
+    "Offers.Listings.Condition.ConditionNote": "Offers.Listings.Condition.ConditionNote",
     /**
      * value: "Offers.Listings.Condition.SubCondition"
      * @const
@@ -289,6 +304,11 @@
      */
     "RentalOffers.Listings.Condition": "RentalOffers.Listings.Condition",
     /**
+     * value: "RentalOffers.Listings.Condition.ConditionNote"
+     * @const
+     */
+    "RentalOffers.Listings.Condition.ConditionNote": "RentalOffers.Listings.Condition.ConditionNote",
+    /**
      * value: "RentalOffers.Listings.Condition.SubCondition"
      * @const
      */
@@ -317,7 +337,47 @@
      * value: "RentalOffers.Listings.MerchantInfo"
      * @const
      */
-    "RentalOffers.Listings.MerchantInfo": "RentalOffers.Listings.MerchantInfo"  };
+    "RentalOffers.Listings.MerchantInfo": "RentalOffers.Listings.MerchantInfo",
+    /**
+     * value: "OffersV2.Listings.Availability"
+     * @const
+     */
+    "OffersV2.Listings.Availability": "OffersV2.Listings.Availability",
+    /**
+     * value: "OffersV2.Listings.Condition"
+     * @const
+     */
+    "OffersV2.Listings.Condition": "OffersV2.Listings.Condition",
+    /**
+     * value: "OffersV2.Listings.DealDetails"
+     * @const
+     */
+    "OffersV2.Listings.DealDetails": "OffersV2.Listings.DealDetails",
+    /**
+     * value: "OffersV2.Listings.IsBuyBoxWinner"
+     * @const
+     */
+    "OffersV2.Listings.IsBuyBoxWinner": "OffersV2.Listings.IsBuyBoxWinner",
+    /**
+     * value: "OffersV2.Listings.LoyaltyPoints"
+     * @const
+     */
+    "OffersV2.Listings.LoyaltyPoints": "OffersV2.Listings.LoyaltyPoints",
+    /**
+     * value: "OffersV2.Listings.MerchantInfo"
+     * @const
+     */
+    "OffersV2.Listings.MerchantInfo": "OffersV2.Listings.MerchantInfo",
+    /**
+     * value: "OffersV2.Listings.Price"
+     * @const
+     */
+    "OffersV2.Listings.Price": "OffersV2.Listings.Price",
+    /**
+     * value: "OffersV2.Listings.Type"
+     * @const
+     */
+    "OffersV2.Listings.Type": "OffersV2.Listings.Type"  };
 
   /**
    * Returns a <code>GetItemsResource</code> enum value from a Javascript object name.

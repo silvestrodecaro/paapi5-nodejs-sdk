@@ -53,56 +53,76 @@ getVariationsRequest['ASIN'] = 'B07H65KP63';
  * Choose resources you want from GetVariationsResource enum
  * For more details, refer: https://webservices.amazon.com/paapi5/documentation/get-variations.html#resources-parameter
  */
-getVariationsRequest['Resources'] = ['Images.Primary.Medium', 'ItemInfo.Title', 'Offers.Listings.Price', 'VariationSummary.VariationDimension'];
+getVariationsRequest['Resources'] = [
+  'Images.Primary.Medium',
+  'ItemInfo.Title',
+  'Offers.Listings.Price',
+  'VariationSummary.VariationDimension'
+];
 
-var callback = function (error, data, response) {
-  if (error) {
-    console.log('Error calling PA-API 5.0!');
-    console.log('Printing Full Error Object:\n' + JSON.stringify(error, null, 1));
-    console.log('Status Code: ' + error['status']);
-    if (error['response'] !== undefined && error['response']['text'] !== undefined) {
-      console.log('Error Object: ' + JSON.stringify(error['response']['text'], null, 1));
+function onSuccess(data) {
+  console.log('API called successfully.');
+  var getVariationsResponse = ProductAdvertisingAPIv1.GetVariationsResponse.constructFromObject(data);
+  console.log('Complete Response: \n' + JSON.stringify(getVariationsResponse, null, 1));
+  if (getVariationsResponse['VariationsResult'] !== undefined) {
+    //console.log('Complete VariationsResult: \n' + JSON.stringify(getVariationsResponse['VariationsResult'], null, 1));
+    console.log('Printing Variation Summary:');
+    if (
+      getVariationsResponse['VariationsResult']['VariationSummary'] !== undefined &&
+      getVariationsResponse['VariationsResult']['VariationSummary']['VariationCount'] !== undefined
+    ) {
+      console.log('VariationCount: ' + getVariationsResponse['VariationsResult']['VariationSummary']['VariationCount']);
     }
-  } else {
-    console.log('API called successfully.');
-    var getVariationsResponse = ProductAdvertisingAPIv1.GetVariationsResponse.constructFromObject(data);
-    console.log('Complete Response: \n' + JSON.stringify(getVariationsResponse, null, 1));
-    if (getVariationsResponse['VariationsResult'] !== undefined) {
-      //console.log('Complete VariationsResult: \n' + JSON.stringify(getVariationsResponse['VariationsResult'], null, 1));
-      console.log('Printing Variation Summary:');
-      if (getVariationsResponse['VariationsResult']['VariationSummary'] !== undefined && getVariationsResponse['VariationsResult']['VariationSummary']['VariationCount'] !== undefined) {
-        console.log('VariationCount: ' + getVariationsResponse['VariationsResult']['VariationSummary']['VariationCount']);
+    console.log('Printing First Item Information in VariationsResult:');
+    var item_0 = getVariationsResponse['VariationsResult']['Items'][0];
+    if (item_0 !== undefined) {
+      if (item_0['ASIN'] !== undefined) {
+        console.log('ASIN: ' + item_0['ASIN']);
       }
-      console.log('Printing First Item Information in VariationsResult:');
-      var item_0 = getVariationsResponse['VariationsResult']['Items'][0];
-      if (item_0 !== undefined) {
-        if (item_0['ASIN'] !== undefined) {
-          console.log('ASIN: ' + item_0['ASIN']);
-        }
-        if (item_0['DetailPageURL'] !== undefined) {
-          console.log('DetailPageURL: ' + item_0['DetailPageURL']);
-        }
-        if (item_0['ItemInfo'] !== undefined && item_0['ItemInfo']['Title'] !== undefined && item_0['ItemInfo']['Title']['DisplayValue'] !== undefined) {
-          console.log('Title: ' + item_0['ItemInfo']['Title']['DisplayValue']);
-        }
-        if (item_0['Offers'] !== undefined && item_0['Offers']['Listings'] !== undefined && item_0['Offers']['Listings'][0]['Price'] !== undefined && item_0['Offers']['Listings'][0]['Price']['DisplayAmount'] !== undefined) {
-          console.log('Buying Price: ' + item_0['Offers']['Listings'][0]['Price']['DisplayAmount']);
-        }
+      if (item_0['DetailPageURL'] !== undefined) {
+        console.log('DetailPageURL: ' + item_0['DetailPageURL']);
       }
-    }
-    if (getVariationsResponse['Errors'] !== undefined) {
-      console.log('Errors:');
-      console.log('Complete Error Response: ' + JSON.stringify(getVariationsResponse['Errors'], null, 1));
-      console.log('Printing 1st Error:');
-      var error_0 = getVariationsResponse['Errors'][0];
-      console.log('Error Code: ' + error_0['Code']);
-      console.log('Error Message: ' + error_0['Message']);
+      if (
+        item_0['ItemInfo'] !== undefined &&
+        item_0['ItemInfo']['Title'] !== undefined &&
+        item_0['ItemInfo']['Title']['DisplayValue'] !== undefined
+      ) {
+        console.log('Title: ' + item_0['ItemInfo']['Title']['DisplayValue']);
+      }
+      if (
+        item_0['Offers'] !== undefined &&
+        item_0['Offers']['Listings'] !== undefined &&
+        item_0['Offers']['Listings'][0]['Price'] !== undefined &&
+        item_0['Offers']['Listings'][0]['Price']['DisplayAmount'] !== undefined
+      ) {
+        console.log('Buying Price: ' + item_0['Offers']['Listings'][0]['Price']['DisplayAmount']);
+      }
     }
   }
-};
-
-try {
-  api.getVariations(getVariationsRequest, callback);
-} catch (ex) {
-  console.log('Exception: ' + ex);
+  if (getVariationsResponse['Errors'] !== undefined) {
+    console.log('Errors:');
+    console.log('Complete Error Response: ' + JSON.stringify(getVariationsResponse['Errors'], null, 1));
+    console.log('Printing 1st Error:');
+    var error_0 = getVariationsResponse['Errors'][0];
+    console.log('Error Code: ' + error_0['Code']);
+    console.log('Error Message: ' + error_0['Message']);
+  }
 }
+
+function onError(error) {
+  console.log('Error calling PA-API 5.0!');
+  console.log('Printing Full Error Object:\n' + JSON.stringify(error, null, 1));
+  console.log('Status Code: ' + error['status']);
+  if (error['response'] !== undefined && error['response']['text'] !== undefined) {
+    console.log('Error Object: ' + JSON.stringify(error['response']['text'], null, 1));
+  }
+}
+
+api.getVariations(getVariationsRequest).then(
+  function(data) {
+    onSuccess(data);
+  },
+  function(error) {
+    onError(error);
+  }
+);
