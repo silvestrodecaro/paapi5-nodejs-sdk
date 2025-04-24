@@ -1,6 +1,6 @@
 {
   "name": "paapi5-nodejs-sdk",
-  "version": "1.1.0",
+  "version": "1.2.2",
   "description": "ProductAdvertisingAPI 5.0 NodeJS SDK",
   "license": "Apache-2.0",
   "main": "src/index.js",
@@ -10,13 +10,13 @@
   },
   "author": {
     "name": "Product Advertising API",
-    "email": "",
+    "email": "inquire.silvestro@gmail.com",
     "url": "https://webservices.amazon.com/paapi5/documentation/index.html"
   },
-  "homepage": "https://github.com/amzn/paapi5-nodejs-sdk",
+  "homepage": "https://github.com/silvestrodecaro/paapi5-nodejs-sdk",
   "repository": {
     "type": "git",
-    "url": "https://github.com/amzn/paapi5-nodejs-sdk"
+    "url": "https://github.com/silvestrodecaro/paapi5-nodejs-sdk"
   },
   "browser": {
     "fs": false
