@@ -22,14 +22,14 @@
     "fs": false
   },
   "dependencies": {
-    "superagent": "3.7.0",
-    "crypto-js": "^3.1.9-1"
+    "superagent": "10.2.0",
+    "crypto-js": "^4.2.0"
   },
   "devDependencies": {
-    "eslint": "^5.8.0",
+    "eslint": "^9.0.0",
     "expect.js": "~0.3.1",
-    "mocha": "^10.0.0",
-    "sinon": "1.17.3"
+    "mocha": "^11.1.0",
+    "sinon": "20.0.0"
   },
   "keywords": [
     "amazon",
